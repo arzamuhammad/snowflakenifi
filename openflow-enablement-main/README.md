@@ -51,4 +51,3 @@ To clean up when done and delete the related Docker volumes and image, run the f
 docker compose down --volumes --rmi 'all'
 ```
 
-1. [NiFi HOL Snowflake Write](https://docs.google.com/document/d/1MaJBwCKG5_ndTkDOqrgF9WA_YcHTJSdSN6oCipyL2As/edit?tab=t.0)
