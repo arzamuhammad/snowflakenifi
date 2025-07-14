@@ -1,0 +1,1 @@
+192.168.65.1 - - [10/Jul/2025:01:47:11 +0000] "GET /nifi/media/bg-error-GUIFCDYN.png HTTP/2.0" 200 2799 "https://localhost:8443/nifi/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"

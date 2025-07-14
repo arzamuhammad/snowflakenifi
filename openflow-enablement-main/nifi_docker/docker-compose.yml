@@ -1,0 +1,44 @@
+services:
+  nifi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nifi-snowflake:2.3.0
+    container_name: nifi
+    restart: unless-stopped
+    ports:
+      - "8080:8080"  # HTTP Web UI
+      - "8443:8443"  # HTTPS Web UI
+    environment:
+      - NIFI_WEB_HTTP_PORT=8080
+      - NIFI_WEB_HTTP_HOST=0.0.0.0
+      - SINGLE_USER_CREDENTIALS_USERNAME=admin
+      - SINGLE_USER_CREDENTIALS_PASSWORD=adminpassword
+    volumes:
+      - nifi_conf:/opt/nifi/nifi-current/conf
+      - nifi_database_repository:/opt/nifi/nifi-current/database_repository
+      - nifi_flowfile_repository:/opt/nifi/nifi-current/flowfile_repository
+      - nifi_content_repository:/opt/nifi/nifi-current/content_repository
+      - nifi_provenance_repository:/opt/nifi/nifi-current/provenance_repository
+      - nifi_python_extensions:/opt/nifi/nifi-current/python_extensions
+      - nifi_nar_extensions:/opt/nifi/nifi-current/nar_extensions
+      - nifi_state:/opt/nifi/nifi-current/state
+      - ./external_data/:/opt/nifi/nifi-current/external_data
+      - ./nifi_logs:/opt/nifi/nifi-current/logs
+      - ./bootstrap.conf:/opt/nifi/nifi-current/conf/bootstrap.conf
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/nifi || curl -k -f https://localhost:8443/nifi"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 45s
+
+volumes:
+  nifi_conf:
+  nifi_database_repository:
+  nifi_flowfile_repository:
+  nifi_content_repository:
+  nifi_provenance_repository:
+  nifi_python_extensions:
+  nifi_nar_extensions:
+  nifi_state:

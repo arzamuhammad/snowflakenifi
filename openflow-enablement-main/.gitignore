@@ -1,0 +1,7 @@
+**/.DS_Store
+
+# NiFi Docker ignores
+nifi-docker/external_data/*
+!nifi-docker/external_data/.gitkeep
+nifi-docker/nifi_logs/*
+!nifi-docker/nifi_logs/.gitkeep
